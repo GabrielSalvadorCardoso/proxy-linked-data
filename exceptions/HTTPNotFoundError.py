@@ -1,0 +1,2 @@
+class HTTPNotFoundError(Exception):
+    pass

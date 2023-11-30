@@ -1,13 +1,10 @@
 import os
 from sanic import Sanic
 from environs import Env
-
-from routes.entrypoint import setup_entrypoint_routes
+from routes.feature_collection import setup_feature_collection_routes
 
 OWS_SERVER = "https://geoservicos.ibge.gov.br/geoserver/CCAR/ows"
 IBGE_BCIM_CAPITAL_URL = f"{OWS_SERVER}?service=WFS&version=1.0.0&request=GetFeature&typeName=CCAR:BCIM_Capital_P&maxFeatures=600000&outputFormat=application/json"
-
-
 
 """
 # REFERENCE: https://docs.geoserver.org/main/en/user/services/wfs/reference.html
@@ -33,7 +30,7 @@ app = Sanic.get_app(
     force_create=True,
 )
 
-setup_entrypoint_routes(app)
+setup_feature_collection_routes(app)
 
 if __name__ == "__main__":
     app.run(port=env.int("SERVER_PORT", 8003))
